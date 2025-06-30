@@ -3,7 +3,7 @@ from argparse import Namespace
 from datetime import datetime
 
 from caelestia.utils.notify import notify
-from caelestia.utils.paths import screenshots_cache_dir, screenshots_dir
+from caelestia.utils.paths import screenshots_cache_dir, screenshots_dir, caelestia_dir
 
 
 class Command:
@@ -21,7 +21,7 @@ class Command:
     def region(self) -> None:
         if self.args.region == "slurp":
             subprocess.run(
-                ["qs", "-c", "caelestia", "ipc", "call", "picker", "openFreeze" if self.args.freeze else "open"]
+                ["qs", "-c", caelestia_dir, "ipc", "call", "picker", "openFreeze" if self.args.freeze else "open"]
             )
         else:
             sc_data = subprocess.check_output(["grim", "-l", "0", "-g", self.args.region.strip(), "-"])
