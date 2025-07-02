@@ -64,12 +64,12 @@ def get_thumb(wall: Path, cache: Path) -> Path:
     # thumb = cache / "thumbnail.jpg"
     thumb = Path(os.getenv("TMPDIR", "/tmp")) / "thumbnail.jpg"
 
-    if not thumb.exists():
-        with Image.open(wall) as img:
-            img = img.convert("RGB")
-            img.thumbnail((128, 128), Image.NEAREST)
-            thumb.parent.mkdir(parents=True, exist_ok=True)
-            img.save(thumb, "JPEG")
+    # if not thumb.exists():
+    with Image.open(wall) as img:
+        img = img.convert("RGB")
+        img.thumbnail((128, 128), Image.NEAREST)
+        thumb.parent.mkdir(parents=True, exist_ok=True)
+        img.save(thumb, "JPEG")
 
     return thumb
 
