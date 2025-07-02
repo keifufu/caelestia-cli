@@ -84,6 +84,9 @@ class Scheme:
 
     @mode.setter
     def mode(self, mode: str) -> None:
+        self._mode = mode
+        return
+
         if mode == self._mode:
             return
 
@@ -106,6 +109,9 @@ class Scheme:
 
     @variant.setter
     def variant(self, variant: str) -> None:
+        self._variant = variant
+        return
+
         if variant == self._variant:
             return
 

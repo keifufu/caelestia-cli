@@ -100,7 +100,7 @@ def get_smart_opts(wall: Path, cache: Path) -> str:
     return opts
 
 
-def get_colours_for_wall(wall: Path | str, no_smart: bool) -> None:
+def get_colours_for_wall(wall: Path | str, no_smart: bool, mode = "dark", variant = "tonalspot") -> None:
     # scheme = get_scheme()
     scheme = Scheme(None)
     cache = wallpapers_cache_dir / compute_hash(wall)
@@ -118,6 +118,9 @@ def get_colours_for_wall(wall: Path | str, no_smart: bool) -> None:
                 "colours": scheme.colours,
             }
         )
+
+    scheme.mode = mode
+    scheme.variant = variant
 
     return {
         "name": name,

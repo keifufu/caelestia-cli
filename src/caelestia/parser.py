@@ -90,6 +90,8 @@ def parse_args() -> (argparse.ArgumentParser, argparse.Namespace):
     # Create parser for wallpaper opts
     wallpaper_parser = command_parser.add_parser("wallpaper", help="manage the wallpaper")
     wallpaper_parser.set_defaults(cls=wallpaper.Command)
+    wallpaper_parser.add_argument("-m", "--mode", help="light or dark", default = "dark")
+    wallpaper_parser.add_argument("-v", "--variant", help="gen variant", default = "tonalspoty")
     wallpaper_parser.add_argument(
         "-p", "--print", nargs="?", const=get_wallpaper(), metavar="PATH", help="print the scheme for a wallpaper"
     )

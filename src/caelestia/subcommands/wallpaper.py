@@ -12,7 +12,7 @@ class Command:
 
     def run(self) -> None:
         if self.args.print:
-            print(json.dumps(get_colours_for_wall(self.args.print, self.args.no_smart)))
+            print(json.dumps(get_colours_for_wall(self.args.print, self.args.no_smart, self.args.mode, self.args.variant)))
         elif self.args.file:
             set_wallpaper(self.args.file, self.args.no_smart)
         elif self.args.random:
