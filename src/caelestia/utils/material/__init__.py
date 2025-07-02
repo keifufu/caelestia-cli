@@ -44,8 +44,8 @@ def get_colours_for_image(image: Path | str = wallpaper_thumbnail_path, scheme=N
     primary = get_score_for_image(image, cache_base)
     scheme = gen_scheme(scheme, primary)
 
-    cache.parent.mkdir(parents=True, exist_ok=True)
-    with cache.open("w") as f:
-        json.dump(scheme, f)
+    # cache.parent.mkdir(parents=True, exist_ok=True)
+    # with cache.open("w") as f:
+    #     json.dump(scheme, f)
 
     return scheme
