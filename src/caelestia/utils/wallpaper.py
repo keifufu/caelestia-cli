@@ -1,3 +1,4 @@
+import os
 import json
 import random
 from argparse import Namespace
@@ -60,7 +61,8 @@ def get_wallpapers(args: Namespace) -> list[Path]:
 
 
 def get_thumb(wall: Path, cache: Path) -> Path:
-    thumb = cache / "thumbnail.jpg"
+    # thumb = cache / "thumbnail.jpg"
+    thumb = Path(os.getenv("TMPDIR", "/tmp")) / "thumbnail.jpg"
 
     if not thumb.exists():
         with Image.open(wall) as img:
