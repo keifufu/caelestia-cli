@@ -7,19 +7,19 @@ from caelestia.utils.paths import compute_hash, scheme_cache_dir, wallpaper_thum
 def get_score_for_image(image: Path | str, cache_base: Path):
     from materialyoucolor.hct import Hct
 
-    cache = cache_base / "score.json"
+    # cache = cache_base / "score.json"
 
-    try:
-        return Hct.from_int(cache.read_text())
-    except (IOError, TypeError):
-        pass
+    # try:
+    #     return Hct.from_int(cache.read_text())
+    # except (IOError, TypeError):
+    #     pass
 
     from caelestia.utils.material.score import score
 
     s = score(str(image))
 
-    cache.parent.mkdir(parents=True, exist_ok=True)
-    cache.write_text(str(s.to_int()))
+    # cache.parent.mkdir(parents=True, exist_ok=True)
+    # cache.write_text(str(s.to_int()))
 
     return s
 
