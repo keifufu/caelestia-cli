@@ -96,7 +96,7 @@ def apply_discord(scss: str) -> None:
         (Path(tmp_dir) / "_colours.scss").write_text(scss)
         conf = subprocess.check_output(["sass", "-I", tmp_dir, templates_dir / "discord.scss"], text=True)
 
-    for client in "Equicord", "Vencord", "BetterDiscord", "equicord", "vesktop", "legcord":
+    for client in "Equicord", "Vencord", "BetterDiscord", "equibop", "vesktop", "legcord":
         write_file(config_dir / client / "themes/caelestia.theme.css", conf)
 
 
@@ -121,9 +121,9 @@ def apply_gtk(colours: dict[str, str], mode: str) -> None:
     write_file(config_dir / "gtk-3.0/gtk.css", template)
     write_file(config_dir / "gtk-4.0/gtk.css", template)
 
-    subprocess.run(["gsettings", "set", "org.gnome.desktop.interface", "gtk-theme", "adw-gtk3-dark"])
-    subprocess.run(["gsettings", "set", "org.gnome.desktop.interface", "color-scheme", f"prefer-{mode}"])
-    subprocess.run(["gsettings", "set", "org.gnome.desktop.interface", "icon-theme", f"Papirus-{mode.capitalize()}"])
+    subprocess.run(["dconf", "write", "/org/gnome/desktop/interface/gtk-theme", "'adw-gtk3-dark'"])
+    subprocess.run(["dconf", "write", "/org/gnome/desktop/interface/color-scheme", f"'prefer-{mode}'"])
+    subprocess.run(["dconf", "write", "/org/gnome/desktop/interface/icon-theme", f"'Papirus-{mode.capitalize()}'"])
 
 
 def apply_qt(colours: dict[str, str], mode: str) -> None:

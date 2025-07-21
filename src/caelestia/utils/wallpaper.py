@@ -21,8 +21,7 @@ from caelestia.utils.scheme import Scheme, get_scheme
 from caelestia.utils.theme import apply_colours
 
 
-def is_valid_image(path: Path | str) -> bool:
-    path = Path(path)
+def is_valid_image(path: Path) -> bool:
     return path.is_file() and path.suffix in [".jpg", ".jpeg", ".png", ".webp", ".tif", ".tiff"]
 
 
@@ -132,6 +131,9 @@ def get_colours_for_wall(wall: Path | str, no_smart: bool, mode = "dark", varian
 
 
 def set_wallpaper(wall: Path | str, no_smart: bool) -> None:
+    # Make path absolute
+    wall = Path(wall).resolve()
+
     if not is_valid_image(wall):
         raise ValueError(f'"{wall}" is not a valid image')
 

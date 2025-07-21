@@ -22,7 +22,7 @@ class Command:
             self.message(*self.args.message)
         else:
             # Start the shell
-            args = ["qs", "-n", "-c", caelestia_dir, "--log-rules", self.args.log_rules]
+            args = ["qs", "-c", caelestia_dir, "-n", "--log-rules", self.args.log_rules]
             if self.args.daemon:
                 args.append("-d")
                 subprocess.run(args)
@@ -36,10 +36,7 @@ class Command:
         return subprocess.check_output(["qs", "-c", caelestia_dir, *args], text=True)
 
     def filter_log(self, line: str) -> bool:
-        return (
-            "QProcess: Destroyed while process" not in line
-            and f"Cannot open: file://{c_cache_dir}/imagecache/" not in line
-        )
+        return f"Cannot open: file://{c_cache_dir}/imagecache/" not in line
 
     def print_ipc(self) -> None:
         print(self.shell("ipc", "show"), end="")
